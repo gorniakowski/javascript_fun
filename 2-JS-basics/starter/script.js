@@ -26,7 +26,7 @@ if (averageJohn > averageMike){
 }else {
     console.log ("It is a tie with average score : " +averageJohn);
 }
-var averageMarry = (7 + 1 + 1) /3;
+var averageMarry = (74 + 1655 + 176666.0) / 3;
 
 switch (true) {
     case averageJohn > averageMarry && averageJohn > averageMike :
@@ -49,3 +49,21 @@ switch (true) {
         break;
 
 }
+//Tiping maschine 
+console.log('********************************************');
+function tip (bill) {
+    if (bill < 50) {
+        return bill * 0.2 ;
+    }else if ( bill >= 50 && bill <= 200){
+        return bill * 0.15;
+    }else{
+        return bill * 0.1;
+    }
+}
+var bills = [124, 48, 268];
+var tips = bills.map(tip);
+var wholeAmount = bills.map (function(bill,number){
+    return bill + tips[number];
+});
+console.log (tips);
+console.log (wholeAmount);
