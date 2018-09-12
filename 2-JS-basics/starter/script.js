@@ -67,3 +67,37 @@ var wholeAmount = bills.map (function(bill,number){
 });
 console.log (tips);
 console.log (wholeAmount);
+//*************************************************************************** */
+console.log('*******pip pip ************************');
+
+var john = {
+    name: 'John',
+    mass: 120,
+    height: 1.70,
+    bmi: function (){
+        this['bmiIndex'] = this.mass / (this.height * this.height);
+        return this.bmiIndex;
+    }
+};
+
+var mark = {
+    name: 'Mark',
+    mass: 120,
+    height : 1.70,
+    bmi: function () {
+        this.bmiIndex = this.mass / (this.height * this.height);
+        return this.bmiIndex;
+    }
+};
+
+console.log(john, mark);
+
+if (john.bmi() > john.bmi()){
+    console.log('Higher BMI has ' + john.name +' with BMI: ' + john.bmiIndex);
+}
+else if (mark.bmiIndex > john.bmiIndex){
+    console.log('Higher BMI has ' + mark.name +' with BMI: ' + mark.bmiIndex);
+}
+else{
+    console.log('It is a draw witt BMI: ' + john.bmiIndex);
+}
