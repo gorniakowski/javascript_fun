@@ -101,3 +101,71 @@ else if (mark.bmiIndex > john.bmiIndex){
 else{
     console.log('It is a draw witt BMI: ' + john.bmiIndex);
 }
+
+
+//*********************************************************************************
+console.log ("****************FINAL PART I ********************");
+
+var john = {
+    bills: [124, 48, 268, 180, 42],
+    calculate_tip: function (){
+        var tips = [];
+        var sums = [];
+        for( var i = 0; i < this.bills.length; i++){
+            if (this.bills[i] < 50){
+                tips[i] = 0.2 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }else if (this.bills[i] >= 50 && this.bills [i] < 200){
+                tips[i] = 0.15 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }else{
+                tips[i] = 0.1 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }
+        }
+        this.tips = tips;
+        this.sums = sums;
+        console.log(this.tips, this.sums);
+
+    }
+};
+
+var mark = {
+    bills: [77, 375, 110, 45],
+    calculate_tip: function (){
+        var tips = [];
+        var sums = [];
+        for( var i = 0; i < this.bills.length; i++){
+            if (this.bills[i] < 100){
+                tips[i] = 0.2 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }else if (this.bills[i] >= 100 && this.bills [i] < 300){
+                tips[i] = 0.1 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }else{
+                tips[i] = 0.25 * this.bills[i];
+                sums[i] = tips[i] + this.bills [i];
+            }
+        }
+        this.tips = tips;
+        this.sums = sums;
+        console.log(this.tips, this.sums);
+
+    }
+};
+john.calculate_tip();
+mark.calculate_tip();
+
+function calculate_average (tips) {
+    var sum = 0;
+    for (var i = 0; i < tips.length; i++){
+        sum += tips[i];
+    }
+    return sum / tips.length;
+};
+
+if (calculate_average(john.tips) > calculate_average(mark.tips)){
+    console.log('John\'s family paid the larger tip');
+}else{
+    console.log('Mark\'s fasmily paid the larger tip' );
+}
