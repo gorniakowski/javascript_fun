@@ -1,5 +1,4 @@
-var score = 0;
-(function promptQuestion () {
+
 function Question (question, answers, correctAnswer) {
     this.question      = question;
     this.answers       = answers;
@@ -12,36 +11,46 @@ function Question (question, answers, correctAnswer) {
            console.log( (i +1) + '. ' + this.answers[i]);
         }
     };
-    this.displayScore = function(){
-        console.log('Your current score is: ' + score);
-    };
 
 }
+
+function score (){
+    var sc = 0;
+    return function(correct){
+        if (correct){
+            sc ++;
+        }
+        return sc;
+    }
+}
+var keepScore = score();
 
 var arrayOfQuestions = [];
 arrayOfQuestions.push (new Question ('Who is the best programmer ?', ['me', 'you'], 1));
 arrayOfQuestions.push (new Question ('Why are you doing this?', ['because','dunno'], 2));
 arrayOfQuestions.push (new Question ('Where do you live?', ['here', 'there', 'nowhere'], 3));
-
+(function promptQuestion () {
 var selectedQuestion = arrayOfQuestions[(Math.floor(Math.random() *10) +1) % arrayOfQuestions.length];
 selectedQuestion.display(); 
 var userAnswer = prompt('Please select the correct answer by typing the number');
 
-Question.prototype.check = function (userAnswer){
+Question.prototype.check = function (userAnswer, callback){
+        var sc;
     if (userAnswer == this.correctAnswer){
-        score += 1;
         console.log ('correct');
-        selectedQuestion.displayScore();
+        sc = callback(true);
      }else{
         console.log('wrong');
-        selectedQuestion.displayScore();
+        sc = callback (false);
      }
+     this.displayScore(sc);
 };
 
-selectedQuestion.check(userAnswer);
-
-if (userAnswer !=='exit'){
+Question.prototype.displayScore = function(score){
+    console.log('Your current score is ' + score);
+}
+selectedQuestion.check(userAnswer, keepScore);
+if (userAnswer !== 'exit'){
     promptQuestion();
 }
-
 })();
