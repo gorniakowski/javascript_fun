@@ -53,4 +53,4 @@ selectedQuestion.check(userAnswer, keepScore);
 if (userAnswer !== 'exit'){
     promptQuestion();
 }
-})();
+})(); 
