@@ -17,11 +17,12 @@ const controlSearch =  async () => {
         state.search = new Search (query);
 
         //prepare ui
-        
+        searchView.cleatInput();
+        searchView.clearResults();
         await state.search.getResults();
 
         //render results on ui
-        console.log (state.search.result);
+        searchView.renderResults(state.search.result)
     }
 
 
